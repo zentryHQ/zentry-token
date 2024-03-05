@@ -7,13 +7,13 @@ import "@openzeppelin/contracts/access/AccessControl.sol";
 import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Permit.sol";
 
 /// @custom:security-contact security@zentry.com
-contract Zentry is ERC20, AccessControl, ERC20Permit {
+contract ZentryToken is ERC20, AccessControl, ERC20Permit {
     bytes32 public constant MINTER_ROLE = keccak256("MINTER_ROLE");
 
-    constructor(address defaultAdmin, address minter)
-        ERC20("Zentry", "ZENT")
-        ERC20Permit("Zentry")
-    {
+    constructor(
+        address defaultAdmin,
+        address minter
+    ) ERC20("Zentry", "ZENT") ERC20Permit("Zentry") {
         _grantRole(DEFAULT_ADMIN_ROLE, defaultAdmin);
         _grantRole(MINTER_ROLE, minter);
     }
