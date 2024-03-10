@@ -32,3 +32,14 @@ yarn-error.log
 *.njsproj
 *.sln
 *.sw?
+# Solidity
+/.hardhat
+/artifacts/
+/coverage/
+/report/
+/.solcover.js
+/.coverage/
+/.nyc_output/
+/.openzeppelin/
+/.pnp.js
+/cache
