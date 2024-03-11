@@ -12,7 +12,7 @@ contract Migrator is Ownable {
 
     event Migrated(address indexed migrant, uint256 indexed destinationAmount);
 
-    constructor(address _gfToken, address _owner) Ownable(_owner) {
+    constructor(address _gfToken) Ownable(msg.sender) {
         gfToken = IERC20(_gfToken);
     }
 
