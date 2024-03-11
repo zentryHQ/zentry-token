@@ -1,6 +1,6 @@
 import { buildModule } from '@nomicfoundation/hardhat-ignition/modules';
 
-const gfToken = '0xe9F8bd6E887b21F2Ce6d841dd61fa43455733B4e';
+const gfToken = '0xaaef88cea01475125522e117bfe45cf32044e238';
 const owner = '';
 
 export default buildModule('ZentryToken', (m) => {
