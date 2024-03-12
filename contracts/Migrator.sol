@@ -9,6 +9,7 @@ contract Migrator is Ownable {
     IERC20 public immutable gfToken;
     ZentryToken public zentryToken;
     uint256 public immutable MIGRATE_RATE = 10;
+    bool public migrationEnabled = false;
 
     event Migrated(address indexed migrant, uint256 indexed destinationAmount);
 
@@ -16,11 +17,24 @@ contract Migrator is Ownable {
         gfToken = IERC20(_gfToken);
     }
 
+    modifier migrationEnabledOnly() {
+        require(migrationEnabled, "Migration is currently disabled");
+        _;
+    }
+
     function setZentryToken(address _zentryToken) external onlyOwner {
         zentryToken = ZentryToken(_zentryToken);
     }
 
-    function migrate() external {
+    function enableMigration() external onlyOwner {
+        migrationEnabled = true;
+    }
+
+    function disableMigration() external onlyOwner {
+        migrationEnabled = false;
+    }
+
+    function migrate() external migrationEnabledOnly {
         uint256 _gfAmount = gfToken.balanceOf(msg.sender);
         uint256 _destinationAmount = _gfAmount * MIGRATE_RATE;
         gfToken.transferFrom(msg.sender, address(this), _gfAmount);
