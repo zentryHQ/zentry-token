@@ -13,17 +13,14 @@ contract Migrator is Ownable {
 
     event Migrated(address indexed migrant, uint256 indexed destinationAmount);
 
-    constructor(address _gfToken) Ownable(msg.sender) {
+    constructor(address _gfToken, address _zentryToken) Ownable(msg.sender) {
         gfToken = IERC20(_gfToken);
+        zentryToken = ZentryToken(_zentryToken);
     }
 
     modifier migrationEnabledOnly() {
         require(migrationEnabled, "Migration is currently disabled");
         _;
-    }
-
-    function setZentryToken(address _zentryToken) external onlyOwner {
-        zentryToken = ZentryToken(_zentryToken);
     }
 
     function enableMigration() external onlyOwner {
