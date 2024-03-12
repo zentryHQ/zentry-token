@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "deploy": "npx hardhat ignition deploy ignition/modules/Zentrytoken.ts",
-    "deploy:mock-gf": "npx hardhat ignition deploy ignition/modules/TestGfToken.ts",
-    "console": "npx hardhat console --no-compile"
+    "deploy": "hardhat ignition deploy ignition/modules/ZentryToken.ts",
+    "deploy:mock-gf": "hardhat ignition deploy ignition/modules/TestGfToken.ts",
+    "console": "hardhat console --no-compile"
   },
   "author": "",
   "license": "ISC",
