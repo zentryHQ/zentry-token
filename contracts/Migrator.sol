@@ -9,7 +9,7 @@ contract Migrator is Ownable {
     IERC20 public immutable gfToken;
     ZentryToken public zentryToken;
     uint256 public immutable MIGRATE_RATE = 10;
-    bool public migrationEnabled = false;
+    bool public migrationEnabled = true;
 
     event Migrated(address indexed migrant, uint256 indexed destinationAmount);
 
