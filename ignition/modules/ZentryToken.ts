@@ -12,10 +12,10 @@ export default buildModule("ZentryToken", (m) => {
   const migrator = m.contract("Migrator", [gfToken, zentryToken]);
 
   // grant role mintter
-  m.call(zentryToken, "grantRole", [MINTER_ROLE, migrator]);
+  const grantRole = m.call(zentryToken, "grantRole", [MINTER_ROLE, migrator]);
 
   // grant role mintter
-  m.call(zentryToken, "renounceRole", [DEFAULT_ROLE, publicAddressDeployer]);
+  m.call(zentryToken, "renounceRole", [DEFAULT_ROLE, publicAddressDeployer], { after: [grantRole] });
 
   // transfer ownership to multisig
   m.call(migrator, "transferOwnership", [owner]);
