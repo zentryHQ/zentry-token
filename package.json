@@ -4,12 +4,19 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "deploy": "npx hardhat ignition deploy ignition/modules/Zentrytoken.ts",
+    "deploy:mock-gf": "npx hardhat ignition deploy ignition/modules/TestGfToken.ts",
+    "console": "npx hardhat console --no-compile"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "hardhat": "^2.21.0"
+    "@nomicfoundation/hardhat-ignition-ethers": "^0.14.0",
+    "dotenv": "^16.4.5",
+    "hardhat": "^2.21.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.2"
   },
   "dependencies": {
     "@openzeppelin/contracts": "^5.0.2",
