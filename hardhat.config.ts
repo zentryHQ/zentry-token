@@ -25,7 +25,7 @@ module.exports = {
       accounts: [process.env.ETH_MAINNET_PRIVATE_KEY].filter(Boolean),
       etherscan: {
         apiKey: process.env.ETHERSCAN_API_KEY,
-      }
+      },
     },
     sepolia: {
       url: process.env.SEPOLIA_RPC_URL || "",

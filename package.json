@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "fork-test": "hardhat test --config hardhat.config.forking.ts ./tests/fork-tests/*.test.ts",
     "deploy": "hardhat ignition deploy ignition/modules/ZentryToken.ts",
     "deploy:mock-gf": "hardhat ignition deploy ignition/modules/TestGfToken.ts",
     "console": "hardhat console --no-compile"
@@ -13,8 +13,13 @@
   "license": "ISC",
   "devDependencies": {
     "@nomicfoundation/hardhat-ignition-ethers": "^0.14.0",
+    "@nomicfoundation/hardhat-network-helpers": "^1.0.10",
+    "@types/chai": "^4.3.12",
+    "@types/mocha": "^10.0.6",
+    "chai": "^4.2.0",
     "dotenv": "^16.4.5",
     "hardhat": "^2.21.0",
+    "mocha": "^10.3.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.4.2"
   },
