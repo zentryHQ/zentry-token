@@ -108,3 +108,16 @@ By following these steps, you can focus more on creating innovative omnichain so
 <p align="center">
   Join our community on <a href="https://discord-layerzero.netlify.app/discord" style="color: #a77dff">Discord</a> | Follow us on <a href="https://twitter.com/LayerZero_Labs" style="color: #a77dff">Twitter</a>
 </p>
+
+
+### Deployed addresses
+
+| Contract                                       | Chain                                          | Address                                        |
+| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
+| MockGFToken                                    | ETH testnet (sepolia)                          | 0xe9F8bd6E887b21F2Ce6d841dd61fa43455733B4e     |
+| ZentryToken                                    | ETH testnet (sepolia)                          | 0x1AF5C7d17BbE13DAbCae6D9eFec90E1CC27E62E2     |
+| GFMigrator                                     | ETH testnet (sepolia)                          | 0x25e1D11b98Bb6570a482b87b5539a626e56670B5     |
+| ZentryOFTAdapter                               | ETH testnet (sepolia)                          | 0x176BF52F7c0B0508f5b71306bd8BA2E98992c0D2     |
+| ZentryOFT                                      | Polygon testnet (mumbai)                       | 0x18dA2b9c46374EE3a2fC4d52D2421A680622aa0d     |
+| ZentryOFT                                      | Fantom testnet                                 | 0x5343646AA34E137937A2E530BA3B642bA807e2d4     |
+
