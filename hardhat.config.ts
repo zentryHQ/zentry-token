@@ -79,6 +79,8 @@ const config: HardhatUserConfig = {
     etherscan: {
         apiKey: {
             sepolia: process.env.SEPOLIA_ETHERSCAN_API_KEY || '',
+            polygonMumbai: process.env.MUMBAI_ETHERSCAN_API_KEY || '',
+            ftmTestnet: process.env.FTM_TESTNET_ETHERSCAN_API_KEY || '',
         },
     },
 }
