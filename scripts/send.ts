@@ -19,8 +19,9 @@ const ftmTestnet = {
 }
 
 /******* Adjust Parameters here *************************************************/
-const from = mumbai
-const to = sepolia
+const from = sepolia
+const to = mumbai
+const receiver = ''
 const tokensToSend = ethers.utils.parseEther('10')
 /****************************************************************************** */
 
@@ -30,7 +31,6 @@ async function main() {
     const signers = await ethers.getSigners()
 
     const owner = signers.at(0)!
-    const receiver = '0xB04d1A4aE94C584aA753D015C71e10Ed0067deDb'
 
     const oft = ZentOFT.attach(from.contractAddress).connect(owner)
 

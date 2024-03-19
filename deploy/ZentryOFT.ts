@@ -3,7 +3,7 @@ import assert from 'assert'
 import { type DeployFunction } from 'hardhat-deploy/types'
 
 const contractName = 'ZentryOFT'
-const owner = '0x226870989E4b9bDdD07060285b3E2924EFaE93f2'
+const owner = ''
 
 const deploy: DeployFunction = async (hre) => {
     const { getNamedAccounts, deployments } = hre

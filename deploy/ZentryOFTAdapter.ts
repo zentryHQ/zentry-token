@@ -4,7 +4,7 @@ import { type DeployFunction } from 'hardhat-deploy/types'
 
 const zentryToken = '0x1AF5C7d17BbE13DAbCae6D9eFec90E1CC27E62E2' // sepolia address
 const contractName = 'ZentryOFTAdapter'
-const owner = '0x226870989E4b9bDdD07060285b3E2924EFaE93f2'
+const owner = ''
 
 const deploy: DeployFunction = async (hre) => {
     const { getNamedAccounts, deployments } = hre
