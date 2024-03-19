@@ -4,7 +4,7 @@ pragma solidity ^0.8.20;
 import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
 import "@layerzerolabs/lz-evm-oapp-v2/contracts/oft/OFTAdapter.sol";
 
-contract MyOFTAdapter is OFTAdapter {
+contract ZentryOFTAdapter is OFTAdapter {
     constructor(
         address _token, // a deployed, already existing ERC20 token address
         address _layerZeroEndpoint, // local endpoint address
