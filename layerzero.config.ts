@@ -3,26 +3,26 @@ import { EndpointId } from '@layerzerolabs/lz-definitions'
 
 const sepoliaContract = {
     eid: EndpointId.SEPOLIA_V2_TESTNET,
-    contractName: 'MyOFT',
+    contractName: 'ZentryOFTAdapter',
 }
 
-const fujiContract = {
-    eid: EndpointId.AVALANCHE_V2_TESTNET,
-    contractName: 'MyOFT',
+const ftmTestnetContract = {
+    eid: EndpointId.FANTOM_V2_TESTNET,
+    contractName: 'ZentryOFT',
 }
 
 const mumbaiContract = {
     eid: EndpointId.POLYGON_V2_TESTNET,
-    contractName: 'MyOFT',
+    contractName: 'ZentryOFT',
 }
 
 export default {
     contracts: [
         {
-            contract: fujiContract,
+            contract: sepoliaContract,
         },
         {
-            contract: sepoliaContract,
+            contract: ftmTestnetContract,
         },
         {
             contract: mumbaiContract,
@@ -30,20 +30,20 @@ export default {
     ],
     connections: [
         {
-            from: fujiContract,
-            to: sepoliaContract,
+            from: sepoliaContract,
+            to: ftmTestnetContract,
             config: {},
         },
         {
-            from: fujiContract,
+            from: sepoliaContract,
             to: mumbaiContract,
         },
         {
-            from: sepoliaContract,
-            to: fujiContract,
+            from: ftmTestnetContract,
+            to: sepoliaContract,
         },
         {
-            from: sepoliaContract,
+            from: ftmTestnetContract,
             to: mumbaiContract,
         },
         {
@@ -52,7 +52,7 @@ export default {
         },
         {
             from: mumbaiContract,
-            to: fujiContract,
+            to: ftmTestnetContract,
         },
     ],
 }

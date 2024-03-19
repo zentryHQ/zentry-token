@@ -38,7 +38,7 @@ const config: HardhatUserConfig = {
     solidity: {
         compilers: [
             {
-                version: '0.8.22',
+                version: '0.8.20',
                 settings: {
                     optimizer: {
                         enabled: true,
@@ -51,17 +51,22 @@ const config: HardhatUserConfig = {
     networks: {
         sepolia: {
             eid: EndpointId.SEPOLIA_V2_TESTNET,
-            url: process.env.RPC_URL_SEPOLIA || 'https://rpc.sepolia.org/',
+            url: 'https://rpc.sepolia.org/',
             accounts,
         },
         fuji: {
             eid: EndpointId.AVALANCHE_V2_TESTNET,
-            url: process.env.RPC_URL_FUJI || 'https://rpc.ankr.com/avalanche_fuji',
+            url: 'https://rpc.ankr.com/avalanche_fuji',
             accounts,
         },
         mumbai: {
             eid: EndpointId.POLYGON_V2_TESTNET,
-            url: process.env.RPC_URL_MUMBAI || 'https://rpc.ankr.com/polygon_mumbai',
+            url: 'https://rpc.ankr.com/polygon_mumbai',
+            accounts,
+        },
+        ftm_testnet: {
+            eid: EndpointId.FANTOM_V2_TESTNET,
+            url: 'https://rpc.ankr.com/fantom_testnet',
             accounts,
         },
     },
