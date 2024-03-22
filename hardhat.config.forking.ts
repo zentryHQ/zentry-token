@@ -10,15 +10,27 @@ import "hardhat-gas-reporter"
  * @type import('hardhat/config').HardhatUserConfig
  */
 module.exports = {
-  solidity: '0.8.20',
+  solidity: {
+    version: '0.8.20',
+    settings: {
+      viaIR: true,
+      optimizer: {
+        enabled: true,
+        runs: 10000,
+      },
+    },
+  },
   etherscan: {
     apiKey: process.env.ETHERSCAN_API_KEY,
   },
-  settings: {
-    optimizer: {
-      enabled: true,
-      runs: 1000,
-    },
+  gasReporter: {
+    enabled: true,
+    L1: 'ethereum',
+    L1Etherscan: process.env.ETHERSCAN_API_KEY,
+    reportPureAndViewMethods: true,
+    coinmarketcap: 'a6c9f552-88c8-4c29-80c1-bc62b7b0495c',
+    darkMode: true,
+    includeIntrinsicGas: true,
   },
   networks: {
     hardhat: {

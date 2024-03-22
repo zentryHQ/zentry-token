@@ -103,4 +103,34 @@ describe('ZentryToken', () => {
     expect(zentryBalanceAfter).to.equal(gfBalanceBefore * rate);
     expect(gfBalanceAfter).to.equal(ethers.toBigInt(0));
   });
-});
+
+  it('can transfer zentry token', async () => {
+    const { zentryToken, migrator } = await loadFixture(deployTokenFixture);
+    const whale = await impersonate(
+      '0xd55CAde5F46B3B7E20eC0B30e174FD7013FD6170',
+    );
+
+    // Send some eth to whale
+    await (
+      await ethers.getSigners()
+    )[0].sendTransaction({
+      to: whale.address,
+      value: ethers.parseEther('5'),
+    });
+
+    const gfToken = await ethers.getContractAt('IERC20', await zentryToken.getAddress(), whale);
+
+    const randomAddress = '0x1234567890123456789012345678901234567890'; // Replace with your desired random address
+
+    const zentryBalanceBefore = await zentryToken.balanceOf(whale.address);
+    const zentryBalanceAfter = await zentryToken.balanceOf(randomAddress);
+
+    await zentryToken.transfer(randomAddress, zentryBalanceBefore);
+
+    const zentryBalanceAfterTransfer = await zentryToken.balanceOf(randomAddress);
+
+    expect(zentryBalanceAfterTransfer.toString()).to.equal(
+      (zentryBalanceAfter + zentryBalanceBefore).toString()
+    );
+  })
+})
