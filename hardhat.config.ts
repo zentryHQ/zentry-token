@@ -11,25 +11,21 @@ import "hardhat-gas-reporter"
  */
 
 
-module.exports = {
-  solidity: "0.8.20",
+export default {
+  solidity: {
+    version: '0.8.20',
+    settings: {
+      viaIR: true,
+      optimizer: {
+        enabled: true,
+        runs: 10000,
+      },
+    },
+  },
   etherscan: {
     apiKey: process.env.ETHERSCAN_API_KEY,
   },
-  settings: {
-    optimizer: {
-      enabled: true,
-      runs: 1000,
-    },
-  },
   networks: {
-    hardhat: {
-      forking: {
-        url: process.env.MAINNET_FORK_RPC_URL || "",
-        // blockNumber: process.env.MAINNET_FORK_BLOCK_NUMBER || '',
-      },
-      accounts: { privateKey: process.env.ETH_MAINNET_PRIVATE_KEY },
-    },
     localhost: {
       url: "http://localhost:8545",
     },
