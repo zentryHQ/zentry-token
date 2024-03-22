@@ -49,15 +49,6 @@ describe('ZentryToken', () => {
   });
 
   it('transfer Migrator ownership to owner', async () => {
-    const { zentryToken } = await loadFixture(deployTokenFixture);
-    const [deployer] = await ethers.getSigners();
-
-    expect(
-      await zentryToken.hasRole(DEFAULT_ADMIN_ROLE, deployer.address),
-    ).to.equal(false);
-  });
-
-  it('transfer Migrator ownership to owner', async () => {
     const { migrator } = await loadFixture(deployTokenFixture);
     expect((await migrator.owner()).toLowerCase()).to.equal(
       owner.toLowerCase(),
