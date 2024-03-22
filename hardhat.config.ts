@@ -6,11 +6,7 @@ import "@nomicfoundation/hardhat-ignition-ethers";
 import "@nomicfoundation/hardhat-verify";
 import "hardhat-gas-reporter"
 
-/**
- * @type import('hardhat/config').HardhatUserConfig
- */
-
-
+/** @type import('hardhat/config').HardhatUserConfig */
 export default {
   solidity: {
     version: '0.8.20',
