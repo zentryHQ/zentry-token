@@ -15,6 +15,11 @@ export default {
       optimizer: {
         enabled: true,
         runs: 999999,
+        details: {
+          yulDetails: {
+            optimizerSteps: "u",
+          },
+        },
       },
     },
   },
