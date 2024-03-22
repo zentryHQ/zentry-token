@@ -4,6 +4,7 @@ dotEnvConfig();
 // hardhat.config.js
 import "@nomicfoundation/hardhat-ignition-ethers";
 import "@nomicfoundation/hardhat-verify";
+import "hardhat-gas-reporter"
 
 /**
  * @type import('hardhat/config').HardhatUserConfig
