@@ -16,7 +16,7 @@ export default buildModule("ZentryToken", (m) => {
   // grant role mintter
   const grantRole = m.call(zentryToken, "grantRole", [MINTER_ROLE, migrator]);
 
-  // grant role mintter
+  // renounceRole role mintter
   m.call(zentryToken, "renounceRole", [DEFAULT_ADMIN_ROLE, signer], {
     after: [grantRole],
   });
