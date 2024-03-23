@@ -7,10 +7,12 @@
     "fork-test": "hardhat test --config hardhat.config.forking.ts ./tests/fork-tests/*.test.ts",
     "deploy": "hardhat ignition deploy ignition/modules/ZentryToken.ts",
     "deploy:mainnet": "hardhat ignition deploy ignition/modules/ZentryToken.ts --network mainnet",
+    "deploy:testnet": "hardhat ignition deploy ignition/modules/ZentryToken.ts --network sepolia",
     "deploy:mock-gf": "hardhat ignition deploy ignition/modules/TestGfToken.ts",
     "console": "hardhat console --no-compile",
     "vis": "hardhat ignition visualize ignition/modules/ZentryToken.ts",
-    "verify": "hardhat verify"
+    "verify": "hardhat verify",
+    "verify:testnet": "hardhat verify --network sepolia"
   },
   "author": "",
   "license": "ISC",
