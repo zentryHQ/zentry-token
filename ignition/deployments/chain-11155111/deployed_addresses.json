@@ -1,3 +1,5 @@
 {
-  "TestGfToken#TestGfToken": "0xe79cB3C5ad09c953d2B6E92FC567F5a61F9ADa8B"
+  "TestGfToken#TestGfToken": "0xe79cB3C5ad09c953d2B6E92FC567F5a61F9ADa8B",
+  "ZentryToken#ZentryToken": "0x66508c8A2b27978f843569Fd53050f771ce2fEA2",
+  "ZentryToken#Migrator": "0xf7Ea5328D54F89F9551a10914619e9D99852C9b8"
 }
