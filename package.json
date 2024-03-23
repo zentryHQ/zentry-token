@@ -12,7 +12,8 @@
     "console": "hardhat console --no-compile",
     "vis": "hardhat ignition visualize ignition/modules/ZentryToken.ts",
     "verify": "hardhat verify",
-    "verify:testnet": "hardhat verify --network sepolia"
+    "verify:testnet": "hardhat verify --network sepolia",
+    "verify:mainnet": "hardhat verify --network mainnet"
   },
   "author": "",
   "license": "ISC",
