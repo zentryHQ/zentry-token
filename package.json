@@ -1,16 +1,17 @@
 {
-  "name": "zentrytoken",
+  "name": "zentry-token",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "fork-test": "hardhat test --config hardhat.config.forking.ts ./tests/fork-tests/*.test.ts",
-    "deploy": "hardhat ignition deploy ignition/modules/ZentryToken.ts",
-    "deploy:mainnet": "hardhat ignition deploy ignition/modules/ZentryToken.ts --network mainnet --verify",
+    "deploy:testnet": "hardhat ignition deploy ignition/modules/ZentryToken.ts --network sepolia",
+    "deploy:mainnet": "hardhat ignition deploy ignition/modules/ZentryToken.ts --network mainnet",
     "deploy:mock-gf": "hardhat ignition deploy ignition/modules/TestGfToken.ts",
     "console": "hardhat console --no-compile",
-    "vis": "hardhat ignition visualize ignition/modules/ZentryToken.ts",
-    "verify": "hardhat ignition verify"
+    "visualize": "hardhat ignition visualize ignition/modules/ZentryToken.ts",
+    "verify:testnet": "hardhat run verify.ts --network sepolia",
+    "verify:mainnet": "hardhat run verify.ts --network mainnet"
   },
   "author": "",
   "license": "ISC",
