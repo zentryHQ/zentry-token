@@ -1,8 +1,8 @@
 import { run } from "hardhat";
 
 const GF_TOKEN_ADDRESS = "0xaaef88cea01475125522e117bfe45cf32044e238";
-const ZENTRY_TOKEN_ADDRESS = "";
-const MIGRATOR_CONTRACT_ADDRESS = "";
+const ZENTRY_TOKEN_ADDRESS = "0xdBB7a34Bf10169d6d2D0d02A6cbb436cF4381BFa";
+const MIGRATOR_CONTRACT_ADDRESS = "0x9f28c9C2dA4A833cbFaAacbf7eB62267334d7149";
 
 if (!GF_TOKEN_ADDRESS) throw "⛔️ GF contract address not provided";
 if (!ZENTRY_TOKEN_ADDRESS) throw "⛔️ Zentry contract address not provided";
