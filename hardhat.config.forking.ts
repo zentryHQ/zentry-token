@@ -32,4 +32,8 @@ export default {
       },
     },
   },
+  typechain: {
+    outDir: "./typechain",
+    target: "ethers-v6",
+  },
 };
