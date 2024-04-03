@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "fork-test": "hardhat test --config hardhat.config.forking.ts ./tests/fork-tests/*.test.ts",
+    "fork-node": "hardhat node --config hardhat.config.forking.ts",
     "deploy": "hardhat ignition deploy ignition/modules/ZentryToken.ts",
     "deploy:mainnet": "hardhat ignition deploy ignition/modules/ZentryToken.ts --network mainnet",
     "deploy:testnet": "hardhat ignition deploy ignition/modules/ZentryToken.ts --network sepolia",
