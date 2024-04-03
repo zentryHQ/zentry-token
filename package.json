@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "fork-test": "hardhat test --config hardhat.config.forking.ts ./tests/fork-tests/*.test.ts",
+    "compile": "COMPILE_ONLY=true hardhat typechain --config hardhat.config.ts",
+    "test": "hardhat test --config hardhat.config.forking.ts",
     "fork-node": "hardhat node --config hardhat.config.forking.ts",
     "deploy": "hardhat ignition deploy ignition/modules/ZentryToken.ts",
     "deploy:mainnet": "hardhat ignition deploy ignition/modules/ZentryToken.ts --network mainnet",
@@ -21,6 +22,8 @@
   "devDependencies": {
     "@nomicfoundation/hardhat-ignition-ethers": "^0.14.0",
     "@nomicfoundation/hardhat-network-helpers": "^1.0.10",
+    "@typechain/ethers-v6": "^0.5.1",
+    "@typechain/hardhat": "^9.1.0",
     "@types/chai": "^4.3.12",
     "@types/mocha": "^10.0.6",
     "chai": "^4.2.0",
@@ -29,6 +32,7 @@
     "hardhat-gas-reporter": "^2.0.2",
     "mocha": "^10.3.0",
     "ts-node": "^10.9.2",
+    "typechain": "^8.3.2",
     "typescript": "^5.4.2"
   },
   "dependencies": {

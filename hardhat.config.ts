@@ -2,14 +2,15 @@ import { config as dotEnvConfig } from "dotenv";
 dotEnvConfig();
 
 // hardhat.config.js
+import "@typechain/hardhat";
 import "@nomicfoundation/hardhat-ignition-ethers";
 import "@nomicfoundation/hardhat-verify";
-import "hardhat-gas-reporter"
+import "hardhat-gas-reporter";
 
 /** @type import('hardhat/config').HardhatUserConfig */
 export default {
   solidity: {
-    version: '0.8.20',
+    version: "0.8.20",
     settings: {
       viaIR: true,
       optimizer: {
@@ -36,5 +37,9 @@ export default {
       url: process.env.SEPOLIA_RPC_URL || "",
       accounts: [process.env.SEPOLIA_PRIVATE_KEY].filter(Boolean),
     },
+  },
+  typechain: {
+    outDir: "./typechain",
+    target: "ethers-v6",
   },
 };

@@ -2,6 +2,7 @@ import { config as dotEnvConfig } from "dotenv";
 dotEnvConfig();
 
 // hardhat.config.js
+import "@typechain/hardhat";
 import "@nomicfoundation/hardhat-ignition-ethers";
 import "@nomicfoundation/hardhat-verify";
 import "hardhat-gas-reporter";
@@ -10,13 +11,6 @@ import "hardhat-gas-reporter";
 export default {
   solidity: {
     version: "0.8.20",
-    settings: {
-      viaIR: true,
-      optimizer: {
-        enabled: true,
-        runs: 999999,
-      },
-    },
   },
   etherscan: {
     apiKey: process.env.ETHERSCAN_API_KEY,

@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "strict": true,
+    "strict": false,
     "noUnusedParameters": false,
     "noImplicitReturns": true,
     "noUnusedLocals": false,
@@ -12,7 +12,7 @@
     "types": ["@types/node", "@types/chai", "@types/mocha"],
     "target": "es5"
   },
-  "include": ["**/*.ts"],
+  "include": ["**/*.ts", "./typechain"],
   "exclude": ["node_modules", "build", "cache", "artifacts"],
   "files": [
     // "types/chai-bignumber.d.ts", "typechain/index.d.ts"
