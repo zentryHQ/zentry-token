@@ -8,12 +8,11 @@ import "@openzeppelin/contracts/access/AccessControl.sol";
 import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Permit.sol";
 
 /// @custom:security-contact security@zentry.com
-contract TestGfToken is ERC20 {
-    bytes32 public constant MINTER_ROLE = keccak256("MINTER_ROLE");
+contract TestnetERC20 is ERC20 {
 
-    constructor() ERC20("GuildFi", "GF") {}
+    constructor(string memory _name, string memory _symbol) ERC20(_name, _symbol) {}
 
-    function mint(uint256 amount) public {
-        _mint(msg.sender, amount);
+    function mint(address _receiver,uint256 amount) public {
+        _mint(_receiver, amount);
     }
 }
