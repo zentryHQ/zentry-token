@@ -1,11 +1,6 @@
 import { ethers, ignition } from "hardhat";
-import LpMigratorDeployment, {
-  gfMigratorAddress,
-  gfTokenAddress,
-  uniswapRouterAddress,
-  zentryTokenAddress,
-  uniGfPairAddress,
-} from "../../ignition/modules/LpMigrator";
+import LpMigratorDeployment from "../../ignition/modules/LpMigrator";
+import deployParameters from "../../ignition/parameters/chain-1.json";
 import { impersonateAccount, loadFixture } from "@nomicfoundation/hardhat-network-helpers";
 import { expect } from "chai";
 import {
@@ -20,6 +15,7 @@ import {
   IUniswapV2Pair__factory,
   IUniswapV2Factory,
   IUniswapV2Factory__factory,
+  ZentryToken,
 } from "../../typechain";
 
 const impersonate = async (account: string) => {
@@ -32,31 +28,33 @@ describe("LPMigrator", () => {
   let whale: any;
   // random address with GF LP
   let whale2: any;
-  let gfMigrator: Migrator;
-  let zentryToken: IERC20;
+
+  let migrator: Migrator;
+  let zentryToken: ZentryToken;
+  let lpMigrator: LpMigrator;
+
   let gfToken: IERC20;
   let weth: IERC20;
-  let lpMigrator: LpMigrator;
   let uniswapRouter: IUniswapV2Router01;
   let gfLpPair: IUniswapV2Pair;
   let uniswapFactory: IUniswapV2Factory;
 
   const deployFixture = async () => {
+    const res = await ignition.deploy(LpMigratorDeployment, { parameters: deployParameters });
+    lpMigrator = res.lpMigrator as unknown as LpMigrator;
+    migrator = res.migrator as unknown as Migrator;
+    zentryToken = res.zentryToken as unknown as ZentryToken;
+
     whale = await impersonate("0xd55CAde5F46B3B7E20eC0B30e174FD7013FD6170");
     whale2 = await impersonate("0x1b16CFfD50d110DB633Eeb79a8A69300cE9f5815");
-    zentryToken = IERC20__factory.connect(zentryTokenAddress, whale);
-    gfToken = IERC20__factory.connect(gfTokenAddress, whale);
-    gfMigrator = Migrator__factory.connect(gfMigratorAddress, whale);
+    gfToken = IERC20__factory.connect(deployParameters.ZentryToken.gfToken, whale);
 
-    uniswapRouter = IUniswapV2Router01__factory.connect(uniswapRouterAddress, whale);
-
-    const { lpMigrator: contract } = await ignition.deploy(LpMigratorDeployment);
-    lpMigrator = contract as unknown as LpMigrator;
-
-    gfLpPair = IUniswapV2Pair__factory.connect(uniGfPairAddress, whale);
-    weth = IERC20__factory.connect(await uniswapRouter.WETH(), whale);
+    uniswapRouter = IUniswapV2Router01__factory.connect(deployParameters.LpMigrator.uniswapRouter, whale);
 
     uniswapFactory = IUniswapV2Factory__factory.connect(await uniswapRouter.factory(), whale);
+    const uniGfPairAddress = await uniswapFactory.getPair(gfToken.getAddress(), await uniswapRouter.WETH());
+    gfLpPair = IUniswapV2Pair__factory.connect(uniGfPairAddress, whale);
+    weth = IERC20__factory.connect(await uniswapRouter.WETH(), whale);
 
     const [signer] = await ethers.getSigners();
     // migrate gf of whale to zentry
@@ -65,11 +63,10 @@ describe("LPMigrator", () => {
       value: ethers.parseEther("1"),
     });
 
-    await gfToken.approve(gfMigrator.target, ethers.MaxUint256);
-    await gfMigrator.migrate();
+    await gfToken.approve(migrator.getAddress(), ethers.MaxUint256);
+    await migrator.connect(whale).migrate();
 
     // for paying gas
-
     await signer.sendTransaction({
       to: whale2.address,
       value: ethers.parseEther("1"),
@@ -83,17 +80,18 @@ describe("LPMigrator", () => {
       to: whale.address,
       value: initETH.toString(),
     });
-
-    await zentryToken.approve(uniswapRouter.target, initZent.toString());
-    await uniswapRouter.addLiquidityETH(
-      zentryTokenAddress,
-      initZent.toString(),
-      "0",
-      "0",
-      signer.address,
-      (await ethers.provider.getBlock("latest"))!.timestamp * 2,
-      { value: initETH.toString() }
-    );
+    await zentryToken.connect(signer).approve(uniswapRouter.getAddress(), initZent.toString());
+    await uniswapRouter
+      .connect(signer)
+      .addLiquidityETH(
+        zentryToken.getAddress(),
+        initZent.toString(),
+        "0",
+        "0",
+        signer.address,
+        (await ethers.provider.getBlock("latest"))!.timestamp * 2,
+        { value: initETH.toString() }
+      );
   };
 
   beforeEach(async () => {
@@ -101,7 +99,7 @@ describe("LPMigrator", () => {
   });
 
   const getZentLpPair = async () => {
-    const zentLpAddress = await uniswapFactory.getPair(zentryTokenAddress, await uniswapRouter.WETH());
+    const zentLpAddress = await uniswapFactory.getPair(zentryToken.getAddress(), await uniswapRouter.WETH());
     return IUniswapV2Pair__factory.connect(zentLpAddress, whale);
   };
 

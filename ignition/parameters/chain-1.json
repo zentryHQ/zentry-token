@@ -1,0 +1,15 @@
+{
+  "ZentryToken" : {
+    "gfToken": "0xaaef88cea01475125522e117bfe45cf32044e238",
+    "owner": "0x9DE6DE21007312eeb6CD90500fFECafeC297B70D"
+  },
+  "xGFMigrator": {
+    "merkleRoot": "",
+    "stakedZentry": "",
+    "owner": ""
+  },
+  "LpMigrator": {
+    "gfToken": "0xaaef88cea01475125522e117bfe45cf32044e238",
+    "uniswapRouter" :"0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D"
+  }
+}

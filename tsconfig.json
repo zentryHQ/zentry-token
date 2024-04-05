@@ -10,7 +10,9 @@
     "module": "commonjs",
     "lib": ["es6", "es2017", "dom"],
     "types": ["@types/node", "@types/chai", "@types/mocha"],
-    "target": "es5"
+    "target": "ES2015",
+    "outDir": "typechain",
+    "moduleResolution": "node"
   },
   "include": ["**/*.ts", "./typechain"],
   "exclude": ["node_modules", "build", "cache", "artifacts"],
