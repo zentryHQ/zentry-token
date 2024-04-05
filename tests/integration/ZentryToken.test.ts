@@ -6,7 +6,7 @@ import { expect } from "chai";
 import { impersonate } from "../utils";
 
 describe("ZentryToken", () => {
-  const gfTokenAddress = deployParameters.ZentryToken.gfTokenAddress;
+  const gfTokenAddress = deployParameters.ZentryToken.gfToken;
   const owner = deployParameters.ZentryToken.owner;
   const MINTER_ROLE = ethers.keccak256(ethers.toUtf8Bytes("MINTER_ROLE"));
   const DEFAULT_ADMIN_ROLE = ethers.ZeroHash;
