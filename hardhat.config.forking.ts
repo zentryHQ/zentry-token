@@ -5,6 +5,7 @@ dotEnvConfig();
 import "@typechain/hardhat";
 import "@nomicfoundation/hardhat-ignition-ethers";
 import "@nomicfoundation/hardhat-verify";
+import "@nomicfoundation/hardhat-chai-matchers";
 import "hardhat-gas-reporter";
 
 /** @type import('hardhat/config').HardhatUserConfig */
@@ -26,11 +27,17 @@ export default {
   },
   networks: {
     hardhat: {
-      blockNumber: 19566362,
+      blockNumber: 19580471,
       forking: {
         url: process.env.ETH_MAINNET_RPC_URL || "",
       },
     },
+  },
+  paths: {
+    sources: "./contracts",
+    tests: "./tests/integration",
+    cache: "./cache",
+    artifacts: "./artifacts",
   },
   typechain: {
     outDir: "./typechain",

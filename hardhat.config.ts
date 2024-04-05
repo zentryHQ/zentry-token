@@ -6,6 +6,7 @@ import "@typechain/hardhat";
 import "@nomicfoundation/hardhat-ignition-ethers";
 import "@nomicfoundation/hardhat-verify";
 import "hardhat-gas-reporter";
+import "@nomicfoundation/hardhat-chai-matchers";
 
 /** @type import('hardhat/config').HardhatUserConfig */
 export default {
@@ -37,6 +38,12 @@ export default {
       url: process.env.SEPOLIA_RPC_URL || "",
       accounts: [process.env.SEPOLIA_PRIVATE_KEY].filter(Boolean),
     },
+  },
+  paths: {
+    sources: "./contracts",
+    tests: "./tests/unit",
+    cache: "./cache",
+    artifacts: "./artifacts",
   },
   typechain: {
     outDir: "./typechain",
