@@ -3,11 +3,6 @@
     "gfToken": "0xe9F8bd6E887b21F2Ce6d841dd61fa43455733B4e",
     "owner": "0x226870989E4b9bDdD07060285b3E2924EFaE93f2"
   },
-  "xGFMigrator": {
-    "merkleRoot": "",
-    "stakedZentry": "",
-    "owner": "0x226870989E4b9bDdD07060285b3E2924EFaE93f2"
-  },
   "LpMigrator": {
     "gfToken": "0xe9F8bd6E887b21F2Ce6d841dd61fa43455733B4e",
     "uniswapRouter" :""
