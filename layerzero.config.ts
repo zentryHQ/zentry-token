@@ -1,90 +1,89 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 import { EndpointId } from '@layerzerolabs/lz-definitions'
 
-const sepoliaContract = {
-    eid: EndpointId.SEPOLIA_V2_TESTNET,
+const mainnetContract = {
+    eid: EndpointId.ETHEREUM_V2_MAINNET,
     contractName: 'ZentryOFTAdapter',
 }
 
-const baseSepoliaContract = {
-    eid: EndpointId.BASESEP_V2_TESTNET,
+const baseContract = {
+    eid: EndpointId.BASE_V2_MAINNET,
     contractName: 'ZentryOFT',
 }
 
-const blastTestnetContract = {
-    eid: EndpointId.BLAST_V2_TESTNET,
+const blastContract = {
+    eid: EndpointId.BLAST_V2_MAINNET,
     contractName: 'ZentryOFT',
 }
 
-const arbSepoliaContract = {
-    eid: EndpointId.ARBSEP_V2_TESTNET,
+const arbContract = {
+    eid: EndpointId.ARBITRUM_V2_MAINNET,
     contractName: 'ZentryOFT',
 }
 
 export default {
     contracts: [
         {
-            contract: sepoliaContract,
+            contract: mainnetContract,
         },
         {
-            contract: baseSepoliaContract,
+            contract: baseContract,
         },
         {
-            contract: blastTestnetContract,
+            contract: blastContract,
         },
         {
-            contract: arbSepoliaContract,
+            contract: arbContract,
         },
     ],
     connections: [
         {
-            from: sepoliaContract,
-            to: baseSepoliaContract,
-            config: {},
+            from: mainnetContract,
+            to: baseContract,
         },
         {
-            from: sepoliaContract,
-            to: blastTestnetContract,
+            from: mainnetContract,
+            to: blastContract,
         },
         {
-            from: sepoliaContract,
-            to: arbSepoliaContract,
+            from: mainnetContract,
+            to: arbContract,
         },
         {
-            from: baseSepoliaContract,
-            to: sepoliaContract,
+            from: baseContract,
+            to: mainnetContract,
         },
         {
-            from: baseSepoliaContract,
-            to: blastTestnetContract,
+            from: baseContract,
+            to: blastContract,
         },
         {
-            from: baseSepoliaContract,
-            to: arbSepoliaContract,
+            from: baseContract,
+            to: arbContract,
         },
         {
-            from: blastTestnetContract,
-            to: sepoliaContract,
+            from: blastContract,
+            to: mainnetContract,
         },
         {
-            from: blastTestnetContract,
-            to: baseSepoliaContract,
+            from: blastContract,
+            to: baseContract,
         },
         {
-            from: blastTestnetContract,
-            to: arbSepoliaContract,
+            from: blastContract,
+            to: arbContract,
         },
         {
-            from: arbSepoliaContract,
-            to: sepoliaContract,
+            from: arbContract,
+            to: mainnetContract,
         },
         {
-            from: arbSepoliaContract,
-            to: baseSepoliaContract,
+            from: arbContract,
+            to: baseContract,
         },
         {
-            from: arbSepoliaContract,
-            to: blastTestnetContract,
+            from: arbContract,
+            to: blastContract,
         },
     ],
 }
