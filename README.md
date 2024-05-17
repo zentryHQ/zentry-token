@@ -137,6 +137,11 @@ npx hardhat lz:oapp:wire --oapp-config layerzero.config.ts
 npx hardhat verify --network <NETWORK> <CONTRACT_ADDRESS> <...ARGS>
 ```
 
+To check if the contracts have correctly been set to communicate with one another, run
+```sh
+npx hardhat lz:oapp:peers:get --oapp-config layerzero.config.ts
+```
+
 Examples:
 
 OFT Adapter
