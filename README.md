@@ -101,7 +101,55 @@ More information about available CLI arguments can be found using the `--help` f
 npx hardhat lz:deploy --help
 ```
 
-By following these steps, you can focus more on creating innovative omnichain solutions and less on the complexities of cross-chain communication.
+### Deploy Zentry OFT
+
+1.  Deploy OFT Adapter On Mainnet
+
+- before proceed, check the variable in `deploy/ZentryOFTAdapter.ts`
+- Note that there should be only one ZentryOFTAdapter across all networks.
+
+```sh
+npx hardhat lz:deploy --networks mainnet --tags ZentryOFTAdapter
+```
+
+2. Deploy OFT On other networks
+
+- before proceed, check the variable in `deploy/ZentryOFT.ts`
+
+```sh
+npx hardhat lz:deploy --networks base,blast,arb --tags ZentryOFT
+```
+
+3. wire
+
+- wire pathways to ensure contracts can communicate with each other
+
+```sh
+npx hardhat lz:oapp:wire --oapp-config layerzero.config.ts
+```
+
+4. verify contracts
+
+- ARGS: arguments of deployed contract separated by whitespace
+- there is an argument that is a layerzero endpoint. it can be found [here](https://docs.layerzero.network/v2/developers/evm/technical-reference/deployed-contracts)
+
+```sh
+npx hardhat verify --network <NETWORK> <CONTRACT_ADDRESS> <...ARGS>
+```
+
+Examples:
+
+OFT Adapter
+```sh
+npx hardhat verify --network sepolia 0xBF8228aeb591bF86786746D433FecC03EC18bd83 0xDf9160b02c837C19746Ce9de2389e565e5372135 0x6EDCE65403992e310A62460808c4b910D972f10f 0x226870989E4b9bDdD07060285b3E2924EFaE93f2
+```
+
+OFT
+```sh
+npx hardhat verify --network base_sepolia 0x6EDCE65403992e310A62460808c4b910D972f10f 0x226870989E4b9bDdD07060285b3E2924EFaE93f2
+```
+
+
 
 <br></br>
 
@@ -114,10 +162,8 @@ By following these steps, you can focus more on creating innovative omnichain so
 
 | Contract                                       | Chain                                          | Address                                        |
 | ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
-| MockGFToken                                    | ETH testnet (sepolia)                          | 0xe9F8bd6E887b21F2Ce6d841dd61fa43455733B4e     |
-| ZentryToken                                    | ETH testnet (sepolia)                          | 0x1AF5C7d17BbE13DAbCae6D9eFec90E1CC27E62E2     |
-| GFMigrator                                     | ETH testnet (sepolia)                          | 0x25e1D11b98Bb6570a482b87b5539a626e56670B5     |
+| ZentryToken                                    | ETH testnet (sepolia)                          | 0xDf9160b02c837C19746Ce9de2389e565e5372135     |
 | ZentryOFTAdapter                               | ETH testnet (sepolia)                          | 0x176BF52F7c0B0508f5b71306bd8BA2E98992c0D2     |
-| ZentryOFT                                      | Polygon testnet (mumbai)                       | 0x18dA2b9c46374EE3a2fC4d52D2421A680622aa0d     |
-| ZentryOFT                                      | Fantom testnet                                 | 0x5343646AA34E137937A2E530BA3B642bA807e2d4     |
-
+| ZentryOFT                                      | Arbitrum sepolia                               | 0xe9F8bd6E887b21F2Ce6d841dd61fa43455733B4e     |
+| ZentryOFT                                      | Base sepolia                                   | 0xe9F8bd6E887b21F2Ce6d841dd61fa43455733B4e     |
+| ZentryOFT                                      | Blast testnet                                  | 0xe9F8bd6E887b21F2Ce6d841dd61fa43455733B4e     |
