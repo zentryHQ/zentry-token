@@ -6,13 +6,18 @@ const sepoliaContract = {
     contractName: 'ZentryOFTAdapter',
 }
 
-const ftmTestnetContract = {
-    eid: EndpointId.FANTOM_V2_TESTNET,
+const baseSepoliaContract = {
+    eid: EndpointId.BASESEP_V2_TESTNET,
     contractName: 'ZentryOFT',
 }
 
-const mumbaiContract = {
-    eid: EndpointId.POLYGON_V2_TESTNET,
+const blastTestnetContract = {
+    eid: EndpointId.BLAST_V2_TESTNET,
+    contractName: 'ZentryOFT',
+}
+
+const arbSepoliaContract = {
+    eid: EndpointId.ARBSEP_V2_TESTNET,
     contractName: 'ZentryOFT',
 }
 
@@ -22,37 +27,64 @@ export default {
             contract: sepoliaContract,
         },
         {
-            contract: ftmTestnetContract,
+            contract: baseSepoliaContract,
         },
         {
-            contract: mumbaiContract,
+            contract: blastTestnetContract,
+        },
+        {
+            contract: arbSepoliaContract,
         },
     ],
     connections: [
         {
             from: sepoliaContract,
-            to: ftmTestnetContract,
+            to: baseSepoliaContract,
             config: {},
         },
         {
             from: sepoliaContract,
-            to: mumbaiContract,
+            to: blastTestnetContract,
         },
         {
-            from: ftmTestnetContract,
+            from: sepoliaContract,
+            to: arbSepoliaContract,
+        },
+        {
+            from: baseSepoliaContract,
             to: sepoliaContract,
         },
         {
-            from: ftmTestnetContract,
-            to: mumbaiContract,
+            from: baseSepoliaContract,
+            to: blastTestnetContract,
         },
         {
-            from: mumbaiContract,
+            from: baseSepoliaContract,
+            to: arbSepoliaContract,
+        },
+        {
+            from: blastTestnetContract,
             to: sepoliaContract,
         },
         {
-            from: mumbaiContract,
-            to: ftmTestnetContract,
+            from: blastTestnetContract,
+            to: baseSepoliaContract,
+        },
+        {
+            from: blastTestnetContract,
+            to: arbSepoliaContract,
+        },
+        {
+            from: arbSepoliaContract,
+            to: sepoliaContract,
+        },
+        {
+            from: arbSepoliaContract,
+            to: baseSepoliaContract,
+        },
+        {
+            from: arbSepoliaContract,
+            to: blastTestnetContract,
         },
     ],
 }

@@ -55,19 +55,34 @@ const config: HardhatUserConfig = {
             url: 'https://rpc.sepolia.org/',
             accounts,
         },
-        fuji: {
-            eid: EndpointId.AVALANCHE_V2_TESTNET,
-            url: 'https://rpc.ankr.com/avalanche_fuji',
+        base: {
+            eid: EndpointId.BASE_V2_MAINNET,
+            url: 'https://mainnet.base.org',
             accounts,
         },
-        mumbai: {
-            eid: EndpointId.POLYGON_V2_TESTNET,
-            url: 'https://rpc.ankr.com/polygon_mumbai',
+        base_sepolia: {
+            eid: EndpointId.BASESEP_V2_TESTNET,
+            url: 'https://sepolia.base.org',
             accounts,
         },
-        ftm_testnet: {
-            eid: EndpointId.FANTOM_V2_TESTNET,
-            url: 'https://rpc.ankr.com/fantom_testnet',
+        blast: {
+            eid: EndpointId.BLAST_V2_MAINNET,
+            url: 'https://rpc.blast.io',
+            accounts,
+        },
+        blast_testnet: {
+            eid: EndpointId.BLAST_V2_TESTNET,
+            url: 'https://sepolia.blast.io',
+            accounts,
+        },
+        arb: {
+            eid: EndpointId.ARBITRUM_V2_MAINNET,
+            url: 'https://arb1.arbitrum.io/rpc',
+            accounts,
+        },
+        arb_sepolia: {
+            eid: EndpointId.ARBSEP_V2_TESTNET,
+            url: 'https://sepolia-rollup.arbitrum.io/rpc',
             accounts,
         },
     },
@@ -78,10 +93,41 @@ const config: HardhatUserConfig = {
     },
     etherscan: {
         apiKey: {
+            mainnet: process.env.MAINNET_ETHERSCAN_API_KEY || '',
             sepolia: process.env.SEPOLIA_ETHERSCAN_API_KEY || '',
-            polygonMumbai: process.env.MUMBAI_ETHERSCAN_API_KEY || '',
-            ftmTestnet: process.env.FTM_TESTNET_ETHERSCAN_API_KEY || '',
+            base: process.env.BASE_ETHERSCAN_API_KEY || '',
+            baseSepolia: process.env.BASESEP_ETHERSCAN_API_KEY || '',
+            arbitrumOne: process.env.ARB_ETHERSCAN_API_KEY || '',
+            arbitrumSepolia: process.env.ARBSEP_ETHERSCAN_API_KEY || '',
+            blast: process.env.BLAST_ETHERSCAN_API_KEY || '',
+            blastSepolia: process.env.BLASTSEP_ETHERSCAN_API_KEY || '',
         },
+        customChains: [
+            {
+                network: 'baseSepolia',
+                chainId: 84532,
+                urls: {
+                    apiURL: 'https://api-sepolia.basescan.org/api',
+                    browserURL: 'https://sepolia.basescan.org',
+                },
+            },
+            {
+                network: 'blast',
+                chainId: 81457,
+                urls: {
+                    apiURL: 'https://api.blastscan.io/api',
+                    browserURL: 'https://blastscan.io',
+                },
+            },
+            {
+                network: 'blastSepolia',
+                chainId: 168587773,
+                urls: {
+                    apiURL: 'https://api-sepolia.blastscan.io/api',
+                    browserURL: 'https://sepolia.blastscan.io/',
+                },
+            },
+        ],
     },
 }
 
