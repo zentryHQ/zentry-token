@@ -1,21 +1,15 @@
 {
-  "compilerOptions": {
-    "strict": true,
-    "noUnusedParameters": false,
-    "noImplicitReturns": true,
-    "noUnusedLocals": false,
-    "strictNullChecks": true,
-    "esModuleInterop": true,
-    "resolveJsonModule": true,
-    "module": "commonjs",
-    "lib": ["es6", "es2017", "dom"],
-    "types": ["@types/node", "@types/chai", "@types/mocha"],
-    "target": "es5"
-  },
-  "include": ["**/*.ts"],
-  "exclude": ["node_modules", "build", "cache", "artifacts"],
-  "files": [
-    // "types/chai-bignumber.d.ts", "typechain/index.d.ts"
-    "typechain/index.d.ts"
-  ]
+	"compilerOptions": {
+		"baseUrl": ".",
+		"target": "es2021",
+		"module": "commonjs",
+		"esModuleInterop": true,
+		"forceConsistentCasingInFileNames": true,
+		"strict": true,
+		"skipLibCheck": true,
+		"resolveJsonModule": true,
+		"skipDefaultLibCheck": true
+	},
+	"include": ["tasks", "./test", "./typechain-types", "./types.d.ts"],
+	"files": ["./hardhat.config.ts"]
 }

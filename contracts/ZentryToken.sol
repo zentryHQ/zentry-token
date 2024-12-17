@@ -8,13 +8,13 @@ import { ERC20Permit } from "@openzeppelin/contracts/token/ERC20/extensions/ERC2
 
 /// @custom:security-contact security@zentry.com
 contract ZentryToken is ERC20, ERC20Burnable, AccessControl, ERC20Permit {
-  bytes32 public constant MINTER_ROLE = keccak256("MINTER_ROLE");
+	bytes32 public constant MINTER_ROLE = keccak256("MINTER_ROLE");
 
-  constructor() ERC20("Zentry", "ZENT") ERC20Permit("Zentry") {
-    _grantRole(DEFAULT_ADMIN_ROLE, _msgSender());
-  }
+	constructor() ERC20("Zentry", "ZENT") ERC20Permit("Zentry") {
+		_grantRole(DEFAULT_ADMIN_ROLE, _msgSender());
+	}
 
-  function mint(address to, uint256 amount) public onlyRole(MINTER_ROLE) {
-    _mint(to, amount);
-  }
+	function mint(address to, uint256 amount) public onlyRole(MINTER_ROLE) {
+		_mint(to, amount);
+	}
 }
