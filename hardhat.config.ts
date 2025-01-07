@@ -12,7 +12,7 @@ import "dotenv/config"
 import "@nomicfoundation/hardhat-ignition-ethers"
 import "@nomicfoundation/hardhat-verify"
 
-import "./tasks/deploySuperchainToken"
+import "./tasks"
 
 // Ethereum
 const MAINNET_RPC_URL = process.env.MAINNET_RPC_URL as string
@@ -24,6 +24,7 @@ const BASE_SEPOLIA_RPC_URL = (process.env.BASE_SEPOLIA_RPC_URL as string) || "ht
 
 // Blockchain explorers
 const ETHERSCAN_API_KEY = process.env.ETHERSCAN_API_KEY as string
+const BASESCAN_API_KEY = process.env.BASESCAN_API_KEY as string
 
 // Private key
 const PRIVATE_KEY = process.env.PRIVATE_KEY || ""
@@ -70,8 +71,8 @@ const config: HardhatUserConfig = {
 			sepolia: ETHERSCAN_API_KEY,
 
 			// Base
-			base: ETHERSCAN_API_KEY,
-			baseSepolia: ETHERSCAN_API_KEY,
+			base: BASESCAN_API_KEY,
+			baseSepolia: BASESCAN_API_KEY,
 		},
 		customChains: [
 			{
