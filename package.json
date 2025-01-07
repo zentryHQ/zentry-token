@@ -15,8 +15,6 @@
 		"deploy": "hardhat ignition deploy ignition/modules/ZentryToken.ts",
 		"deploy:mainnet": "hardhat ignition deploy ignition/modules/ZentryToken.ts --network mainnet",
 		"deploy:testnet": "hardhat ignition deploy ignition/modules/ZentryToken.ts --network sepolia",
-		"deploy:base-sepolia": "hardhat ignition deploy ignition/modules/ZentryToken.ts --network baseSepolia",
-		"deploy:base": "hardhat ignition deploy ignition/modules/ZentryToken.ts --network base",
 		"deploy:mock-gf": "hardhat ignition deploy ignition/modules/TestGfToken.ts",
 		"console": "hardhat console --no-compile",
 		"vis": "hardhat ignition visualize ignition/modules/ZentryToken.ts",
