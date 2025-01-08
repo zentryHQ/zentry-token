@@ -35,7 +35,7 @@ const config: HardhatUserConfig = {
 		localhost: {
 			url: "http://localhost:8545",
 			accounts: [PRIVATE_KEY],
-			gasPrice: 1000000000,
+			gasPrice: 1_000_000_000,
 		},
 		hardhat: {
 			// If you want to do some forking, uncomment below lines
@@ -54,12 +54,11 @@ const config: HardhatUserConfig = {
 		base: {
 			url: BASE_RPC_URL,
 			accounts: [PRIVATE_KEY],
-			gasPrice: 1000000000,
+			gasPrice: 1_000_000_000,
 		},
 		baseSepolia: {
 			url: BASE_SEPOLIA_RPC_URL,
 			accounts: [PRIVATE_KEY],
-			gasPrice: 1000000000,
 		},
 	},
 	etherscan: {

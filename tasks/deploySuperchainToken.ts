@@ -1,17 +1,18 @@
 import { task } from "hardhat/config"
-import { networks } from "../config"
-import { ethers } from "ethers"
+import { networks, tokens } from "../config"
+import { ethers, EventLog, Log } from "ethers"
+import {} from "ethers"
 import OPTIMISM_MINTABLE_ERC20_FACTORY_ABI from "../abi/OptimismMintableERC20Factory.json"
 
-interface DeployL2TokenArgs {
+interface DeploySuperchainTokenArgs {
 	name: string
 	symbol: string
 }
 
-task("deployL2Token", "Deploy L2 token")
+task("deploySuperchainToken", "Deploy Superchain token")
 	.addParam("name", "The name of the token")
 	.addParam("symbol", "The symbol of the token")
-	.setAction(async ({ name, symbol }: DeployL2TokenArgs, { ethers, network }) => {
+	.setAction(async ({ name, symbol }: DeploySuperchainTokenArgs, { ethers, network }) => {
 		const networkName = network.name
 		const networkConfig = networks[networkName as keyof typeof networks]
 
@@ -22,20 +23,25 @@ task("deployL2Token", "Deploy L2 token")
 			signer
 		)
 
-		const tx = await OptimismMintableERC20Factory.createOptimismMintableERC20(
-			networkConfig.remoteZentryToken,
-			name,
-			symbol
-		)
+		console.log("Account balance:", ethers.formatUnits(await ethers.provider.getBalance(signer.address), 18))
+		const remoteToken = tokens[`${symbol}` as keyof typeof tokens]
+
+		if (!remoteToken) {
+			throw new Error(`Remote token not found for ${name}`)
+		}
+
+		const tx = await OptimismMintableERC20Factory.createOptimismMintableERC20(remoteToken, name, symbol)
 		console.log(`Transaction hash: ${tx.hash}`)
-		const txReceipt = await tx.wait()
+		const receipt: ethers.ContractTransactionReceipt = await tx.wait()
 
-		const iface = new ethers.Interface(OPTIMISM_MINTABLE_ERC20_FACTORY_ABI)
-		const tokenAddress = getTokenAddress(iface, txReceipt.logs)
-		console.log(`Token deployed at ${tokenAddress} on ${networkName}`)
+		const event = receipt.logs?.find(
+			(e: Log | EventLog) => e instanceof EventLog && e.eventName === "OptimismMintableERC20Created"
+		)
+
+		if (!event) {
+			throw new Error("Unable to find OptimismMintableERC20Created event")
+		}
+
+		const tokenAddress = (event as EventLog).args.localToken
+		console.log(`Deployed token: ${name} (${symbol}) at ${tokenAddress}`)
 	})
-
-function getTokenAddress(factoryInterface: ethers.Interface, txReceipt: ethers.TransactionReceipt) {
-	const log = factoryInterface.parseLog(txReceipt.logs[1])
-	return log?.args[0]
-}
